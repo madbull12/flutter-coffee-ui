@@ -1,3 +1,4 @@
+import 'package:coffee_shop_app/screens/login.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.black,
                 image: DecorationImage(
-                    image: AssetImage("/images/welcome.png"),
+                    image: AssetImage("assets/images/welcome.png"),
                     fit: BoxFit.contain,
                     opacity: 0.7),
               ),
@@ -29,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             child: Container(
                 padding: const EdgeInsets.only(bottom: 10, left: 25, right: 25),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -37,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                       "Coffee so good, your taste buds will love it.",
                       style: GoogleFonts.sora(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: 34,
                           fontWeight: FontWeight.w500),
                       textAlign: TextAlign.center,
                     ),
@@ -54,6 +55,11 @@ class WelcomeScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // Add your onPressed function here
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:coffee_shop_app/screens/home_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("/images/login-bg.jpg"), fit: BoxFit.cover),
+            image: AssetImage("assets/images/login-bg.jpg"), fit: BoxFit.cover),
       ),
       child: Center(
         child: _showLogin ? _buildLoginForm() : _buildRegisterForm(),
@@ -103,6 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   onPressed: () {
                     // Perform login action
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(
@@ -198,6 +204,11 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   onPressed: () {
                     // Perform login action
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(

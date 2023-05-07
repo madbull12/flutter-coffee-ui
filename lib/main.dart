@@ -1,5 +1,5 @@
 import 'package:coffee_shop_app/screens/login.dart';
-// import 'package:coffee_shop_app/screens/welcome_screen.dart';
+import 'package:coffee_shop_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,6 +27,6 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: LoginPage());
+        home: WelcomeScreen());
   }
 }
