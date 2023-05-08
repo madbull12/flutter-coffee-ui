@@ -1,3 +1,4 @@
+import 'package:coffee_shop_app/widgets/items_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -7,7 +8,29 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 6, vsync: this, initialIndex: 0);
+    _tabController.addListener(_handleTabSelection);
+    super.initState();
+  }
+
+  _handleTabSelection() {
+    if (_tabController.indexIsChanging) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   final List<String> categories = [
     'Espresso',
     'Latte',
@@ -20,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Container(
+          child: SingleChildScrollView(
+              child: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
           colors: [
@@ -93,29 +117,23 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 16.0,
             ),
-            Expanded(
-              child: SizedBox(
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Card(
-                            color: const Color(0xFFC67C4E),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                categories[index],
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )));
-                  },
-                ),
-              ),
-            ),
+            TabBar(
+                indicator: const UnderlineTabIndicator(
+                    borderSide:
+                        BorderSide(width: 3, color: const Color(0xFFC67C4E)),
+                    insets: EdgeInsets.symmetric(horizontal: 16)),
+                controller: _tabController,
+                physics: const BouncingScrollPhysics(),
+                labelColor: const Color(0xFFC67C4E),
+                unselectedLabelColor: Colors.white,
+                isScrollable: true,
+                tabs: [
+                  for (int i = 0; i < categories.length; i++)
+                    Tab(
+                      text: categories[i],
+                    )
+                ]),
+            const ItemsWidget()
           ]),
         ),
         // child: ListView(
@@ -126,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //     )
         //   ],
         // ),
-      )),
+      ))),
     );
   }
 }
