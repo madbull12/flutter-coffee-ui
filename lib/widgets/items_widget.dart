@@ -1,4 +1,12 @@
+import 'package:coffee_shop_app/screens/item_details_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}
 
 class ItemsWidget extends StatelessWidget {
   const ItemsWidget({super.key});
@@ -33,32 +41,71 @@ class ItemsWidget extends StatelessWidget {
                 ]),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              // InkWell(
-              //   borderRadius: BorderRadius.circular(20.0),
-              //   child: Container(
-              //     child: Image.asset("assets/images/${images[i]}.jpg",
-              //         fit: BoxFit.cover, height: 100, width: double.infinity),
-              //   ),
-              // )
-              Container(
-                  width: double.infinity,
-                  height: 100.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/${images[i]}.jpg"),
-                          fit: BoxFit.cover))),
-              SizedBox(
+              InkWell(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ItemDetailsScreen(images[i]))),
+                borderRadius: BorderRadius.circular(20.0),
+                child: Container(
+                    width: double.infinity,
+                    height: 120.0,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8.0)),
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/${images[i]}.jpg"),
+                            fit: BoxFit.cover))),
+              ),
+              const SizedBox(
                 height: 8,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  "${images[i]}",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.white),
-                ),
-              )
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${images[i]}".capitalize(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontSize: 16.0),
+                        ),
+                        const SizedBox(
+                          height: 4.0,
+                        ),
+                        const Text(
+                          "Best",
+                          style: TextStyle(
+                              color: Color(0x9b9b9b9b), fontSize: 12.0),
+                        ),
+                        const SizedBox(
+                          height: 4.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text("\$\ 3.90",
+                                style: TextStyle(
+                                    color: Color(0xFF2F4B4E),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18.0)),
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFC67C4E),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: const Icon(
+                                CupertinoIcons.add,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        )
+                      ]))
             ]),
           )
       ],
