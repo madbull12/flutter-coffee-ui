@@ -1,3 +1,4 @@
+import 'package:coffee_shop_app/screens/order_screen.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
@@ -128,6 +129,12 @@ class ItemDetailsScreen extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () {
                               // Perform login action
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OrderScreen(
+                                            img: img,
+                                          )));
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(
