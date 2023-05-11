@@ -2,6 +2,7 @@ import 'package:coffee_shop_app/screens/login.dart';
 import 'package:coffee_shop_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:coffee_shop_app/screens/provide_pin_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,6 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: WelcomeScreen());
+        home: PinScreen());
   }
 }
